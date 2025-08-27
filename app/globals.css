@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --card-bg: 255, 255, 255;
+  --card-border: 229, 231, 235;
+  --text-primary: 0, 0, 0;
+  --text-secondary: 75, 85, 99;
+  --gradient-start: 102, 126, 234;
+  --gradient-end: 118, 75, 162;
+}
+
+[data-theme="dark"] {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+  --card-bg: 31, 41, 55;
+  --card-border: 55, 65, 81;
+  --text-primary: 255, 255, 255;
+  --text-secondary: 156, 163, 175;
+  --gradient-start: 139, 92, 246;
+  --gradient-end: 168, 85, 247;
+}
+
+body {
+  color: rgb(var(--text-primary));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  transition: all 0.3s ease;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Estilos customizados para o catálogo */
+.catalogo-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+  background: linear-gradient(135deg, rgb(var(--gradient-start)) 0%, rgb(var(--gradient-end)) 100%);
+  color: white;
+  border-radius: 15px;
+}
+
+.service-card {
+  background: rgb(var(--card-bg));
+  border: 1px solid rgb(var(--card-border));
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 1rem 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  background: rgb(var(--card-bg));
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgb(var(--card-border));
+}
+
+.price-table th,
+.price-table td {
+  padding: 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid rgb(var(--card-border));
+  color: rgb(var(--text-primary));
+}
+
+.price-table th {
+  background: linear-gradient(135deg, rgb(var(--gradient-start)) 0%, rgb(var(--gradient-end)) 100%);
+  color: white;
+  font-weight: 600;
+}
+
+.price-table tr:hover {
+  background-color: rgba(var(--card-border), 0.1);
+}
+
+.contact-section {
+  background: linear-gradient(135deg, rgb(var(--gradient-start)) 0%, rgb(var(--gradient-end)) 100%);
+  color: white;
+  padding: 3rem;
+  border-radius: 15px;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.cta-button {
+  display: inline-block;
+  background: white;
+  color: rgb(var(--gradient-start));
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+}
+
+.feature-list li {
+  padding: 0.5rem 0;
+  position: relative;
+  padding-left: 2rem;
+  color: rgb(var(--text-secondary));
+}
+
+.feature-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #10b981;
+  font-weight: bold;
+}
+
+/* Interruptor sutil do tema */
+.theme-toggle {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.theme-toggle .theme-toggle-track {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  width: 54px;
+  height: 28px;
+  border-radius: 999px;
+  background: rgba(var(--card-border), 0.5);
+  border: 1px solid rgba(var(--card-border), 0.9);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.theme-toggle--dark .theme-toggle-track {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.theme-toggle .theme-toggle-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: rgb(var(--card-bg));
+  border: 1px solid rgb(var(--card-border));
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.theme-toggle--dark .theme-toggle-knob {
+  transform: translateX(26px);
+}
+
+.theme-toggle .theme-toggle-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+  transition: opacity 0.2s ease;
+}
+
+.theme-toggle-icon--sun { left: 8px; }
+.theme-toggle-icon--moon { right: 8px; }
+
+.theme-toggle-icon--inactive {
+  opacity: 0.35;
+}
+
+/* Section headings */
+section h2 {
+  color: rgb(var(--text-primary));
+  margin-bottom: 1rem;
+}
+
+section p {
+  color: rgb(var(--text-secondary));
+}
+
+/* Service card titles */
+.service-card h3 {
+  color: rgb(var(--text-primary));
+  margin-bottom: 1rem;
+}
+
+.service-card p {
+  color: rgb(var(--text-secondary));
+}
+
+/* Footer */
+footer {
+  color: rgb(var(--text-secondary)) !important;
+}
